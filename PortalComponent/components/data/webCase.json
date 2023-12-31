@@ -1,0 +1,65 @@
+{
+    "members": {
+      "1": {
+        "name": "John",
+        "active_cases": ["case_1", "case_2"],
+        "documents": ["doc_1", "doc_2"],
+        "activities": ["activity_1", "activity_2"]
+      },
+      "2": {
+        "name": "Jane",
+        "active_cases": ["case_3", "case_4"],
+        "documents": ["doc_3", "doc_4"],
+        "activities": ["activity_3", "activity_4"]
+      }
+    },
+    "cases": {
+      "case_1": {
+        "title": "Case 1",
+        "description": "Description of case 1",
+        "members": ["1", "3"],
+        "documents": ["doc_1", "doc_2"],
+        "activities": ["activity_1", "activity_3"]
+      },
+      "case_2": {
+        "title": "Case 2",
+        "description": "Description of case 2",
+        "members": ["1", "2"],
+        "documents": ["doc_2", "doc_4"],
+        "activities": ["activity_2", "activity_4"]
+      }
+    },
+    "documents": {
+      "doc_1": {
+        "title": "Document 1",
+        "description": "Description of document 1",
+        "members": ["1"],
+        "cases": ["case_1"],
+        "activities": ["activity_1"]
+      },
+      "doc_2": {
+        "title": "Document 2",
+        "description": "Description of document 2",
+        "members": ["1", "2"],
+        "cases": ["case_1", "case_2"],
+        "activities": ["activity_2"]
+      }
+    },
+    "activities": {
+      "activity_1": {
+        "title": "Activity 1",
+        "description": "Description of activity 1",
+        "members": ["1"],
+        "cases": ["case_1"],
+        "documents": ["doc_1"]
+      },
+      "activity_2": {
+        "title": "Activity 2",
+        "description": "Description of activity 2",
+        "members": ["1", "2"],
+        "cases": ["case_2"],
+        "documents": ["doc_2"]
+      }
+    }
+  }
+  

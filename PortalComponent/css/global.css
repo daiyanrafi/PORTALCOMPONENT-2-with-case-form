@@ -1,0 +1,107 @@
+.control-pane {
+  text-align: left;
+}
+
+:root {
+  --primary-color: #007bff; /* blue */
+  --secondary-color: #6c757d; /* gray */
+  --font-family: 'Open Sans', sans-serif;
+  --font-size: 16px;
+  --line-height: 1.5;
+  --spacing-small: 8px;
+  --spacing-medium: 16px;
+  --spacing-large: 24px;
+}
+
+body {
+  font-family: var(--font-family);
+  font-size: var(--font-size);
+  line-height: var(--line-height);
+}
+
+h2{
+  font-family: var(--font-family);
+  font-size: var(--font-size);
+  padding: 10px;
+  margin: 0;
+  text-align: left;
+}
+h1, h3, h4, h5, h6 {
+  font-family: var(--font-family);
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  color: #fff;
+}
+
+.btn-secondary {
+  background-color: var(--secondary-color);
+  color: #fff;
+}
+.innerStyles{
+  margin: auto;
+  padding: 20px 40px;
+  width: 100%;
+}
+.cardGroup{
+  margin-top: 15px;
+}
+.ms-Pivot-text{
+  font-size: 16px;
+}
+
+.ms-DetailsRow-fields{
+  font-size: 14px;
+  color: black;
+}
+
+/* Member Active Cases */
+
+.case-inprogress {
+  height: fit-content;
+  background-color: orange;
+  color: white;
+  display: flex;
+  align-items: center;
+  padding: 4px;
+  border-radius: 4px;
+}
+.case-closed {
+  height: fit-content;
+  background-color: red;
+  color: white;
+  display: flex;
+  align-items: center;
+  padding: 4px;
+  border-radius: 4px;
+}
+.case-open {
+  height: fit-content;
+  background-color: green;
+  color: white;
+  display: flex;
+  align-items: center;
+  padding: 4px;
+  border-radius: 4px;
+}
+
+.caseContainer{
+  display: inline-block;
+  margin-right: 20px ;
+margin-bottom: 20px;   
+border-color: #e1dfdd; 
+box-shadow: 0 5px 15px -5px rgba(0, 0, 0, 0.2);
+width: 320px;
+overflow: auto;
+}
+.case-container{
+  display: flex;
+  padding-top: 10px;
+  place-content: space-between;
+  margin-right: inherit;
+}
+
+.pivot-container{
+  align-items: left;
+}
