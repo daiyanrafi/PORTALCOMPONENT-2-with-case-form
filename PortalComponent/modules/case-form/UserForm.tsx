@@ -1,5 +1,6 @@
+/* eslint-disable no-unused-vars */
 // UserForm.tsx
-import * as React from 'react';
+import React from 'react';
 import { TextField, Typography, Grid, MenuItem, FormControlLabel, Radio, RadioGroup } from '@mui/material';
 
 type UserFormProps = {
@@ -9,6 +10,7 @@ type UserFormProps = {
   postalAddress: string;
   address: string;
   suburb: string;
+  postcode: string;
   state: string;
   country: string;
   preferredContact: string;
@@ -22,6 +24,7 @@ type UserFormProps = {
     postalAddress: string;
     address: string;
     suburb: string;
+    postcode: string;
     state: string;
     country: string;
     preferredContact: string;
@@ -38,6 +41,7 @@ export function UserForm({
   postalAddress,
   address,
   suburb,
+  postcode,
   state,
   country,
   preferredContact,
@@ -47,44 +51,45 @@ export function UserForm({
   updateFields,
 }: UserFormProps) {
   return (
-    <div style={{ marginBottom: '16px' }}>
+    <div style={{ marginBottom: '10px' }}>
       <Typography variant="h6" gutterBottom>
         Your Details
       </Typography>
-      <p>Please Enter you details below</p>
+      <p style={{ fontFamily: 'Arial, sans-serif', fontSize: '14px', fontStyle: 'italic', marginBottom: '20px' }}>Please Enter you details below</p>
       <Grid container spacing={2}>
         <Grid item xs={2}>
-    <TextField
-      fullWidth
-      select
-      label="Title"
-      value={title}
-      onChange={(e) => updateFields({ title: e.target.value })}
-    >
-      <MenuItem value="Mr">Mr</MenuItem>
-      <MenuItem value="Mrs">Mrs</MenuItem>
-    </TextField>
-  </Grid>
-  <Grid item xs={5}>
-    <TextField
-      fullWidth
-      label="First Name"
-      required
-      type="text"
-      value={firstName}
-      onChange={(e) => updateFields({ firstName: e.target.value })}
-    />
-  </Grid>
-  <Grid item xs={5}>
-    <TextField
-      fullWidth
-      label="Last Name"
-      required
-      type="text"
-      value={lastName}
-      onChange={(e) => updateFields({ lastName: e.target.value })}
-    />
-  </Grid>
+          <TextField
+            fullWidth
+            select
+            required
+            label="Title"
+            value={title}
+            onChange={(e) => updateFields({ title: e.target.value })}
+          >
+            <MenuItem value="Mr">Mr</MenuItem>
+            <MenuItem value="Mrs">Mrs</MenuItem>
+          </TextField>
+        </Grid>
+        <Grid item xs={5}>
+          <TextField
+            fullWidth
+            label="First Name"
+            required
+            type="text"
+            value={firstName}
+            onChange={(e) => updateFields({ firstName: e.target.value })}
+          />
+        </Grid>
+        <Grid item xs={5}>
+          <TextField
+            fullWidth
+            label="Last Name"
+            required
+            type="text"
+            value={lastName}
+            onChange={(e) => updateFields({ lastName: e.target.value })}
+          />
+        </Grid>
         <Grid item xs={12}>
           <TextField
             fullWidth
@@ -105,7 +110,7 @@ export function UserForm({
             onChange={(e) => updateFields({ address: e.target.value })}
           />
         </Grid>
-        <Grid item xs={12}>
+        <Grid item xs={6}>
           <TextField
             fullWidth
             label="Suburb"
@@ -113,6 +118,16 @@ export function UserForm({
             type="text"
             value={suburb}
             onChange={(e) => updateFields({ suburb: e.target.value })}
+          />
+        </Grid>
+        <Grid item xs={6}>
+          <TextField
+            fullWidth
+            label="Postcode"
+            required
+            type="text"
+            value={postcode}
+            onChange={(e) => updateFields({ postcode: e.target.value })}
           />
         </Grid>
         <Grid item xs={12}>

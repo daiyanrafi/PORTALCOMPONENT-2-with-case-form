@@ -1,13 +1,16 @@
+/* eslint-disable react/jsx-key */
 // App.tsx
-// import React, { FormEvent, useState } from 'react';
-import * as React from 'react';
+import React, { FormEvent, useState } from 'react';
 import { Container, Paper, Typography, Grid, Button } from '@mui/material';
 import { UserForm } from './UserForm';
 import { AddressForm } from './AddressForm';
-import { IncidentAddressForm } from './AccountForm';
+// import { AccountForm } from './AccountForm';
 import { ComplaintForm } from './Complaint';
+import { IncidentAddressForm } from './IncidentAddressForm';
 import StartPage from './StartPage';
-import { FormEvent, useState } from 'react';
+import { ComplaintCont } from './ComplaintCont';
+import { FinalizeSubmissionForm } from './FinalizeSubmissionForm';
+import { RepresentativeForm } from './Representative';
 
 type FormData = {
   title: string;
@@ -16,6 +19,7 @@ type FormData = {
   postalAddress: string;
   address: string;
   suburb: string;
+  postcode: string;
   country: string;
   preferredContact: string;
   landline: string;
@@ -26,19 +30,45 @@ type FormData = {
   state: string;
   zip: string;
   email: string;
-  password: string;
-  //complaint-page
+  // password: string;
+  //complaint-page---------------
   supplier: string;
   service: string;
   accountNumber: string;
   complaintDescription: string;
   resolutionDescription: string;
-  //Incident-page
+  //Incident-page------------------
   // address: string;
   address1: string;
   // city: string;
-  postcode: string;
+  // postcode: string;
   // state: string;
+  //complaint-cont---------------
+  concession: string;
+  concessionTypes: string[];
+  hasComplaint: string;
+  // complaintDescription: string;
+  agree: boolean;
+  treeIdentification: string;
+  //final-page
+  bestTime: string;
+  howDidYouHear: string;
+  attachFile: File | null;
+  isRobot: boolean;
+   // RepresentativeForm fields
+   representativeTitle: string;
+   representativeFirstName: string;
+   representativeLastName: string;
+   representativePostalAddress: string;
+  //  representativeAddress: string;
+   representativeSuburb: string;
+   representativePostcode: string;
+   representativeState: string;
+   representativeCountry: string;
+   representativePreferredContact: string;
+   representativeLandline: string;
+   representativeMobile: string;
+   representativeEmail: string;
 };
 
 const INITIAL_DATA: FormData = {
@@ -48,6 +78,7 @@ const INITIAL_DATA: FormData = {
   postalAddress: '',
   address: '',
   suburb: '',
+  // postcode:'',
   country: '',
   preferredContact: '',
   landline: '',
@@ -58,7 +89,7 @@ const INITIAL_DATA: FormData = {
   state: '',
   zip: '',
   email: '',
-  password: '',
+  // password: '',
   //complaint-page
   supplier: '',
   service: '',
@@ -71,6 +102,32 @@ const INITIAL_DATA: FormData = {
   // city: '',
   postcode: '',
   // state: '',
+  //complant-cont
+  concession: '',
+  concessionTypes: [],
+  hasComplaint: '',
+  // complaintDescription: '',
+  agree: false,
+  treeIdentification: '',
+  //final-page
+  bestTime: '',
+  howDidYouHear: '',
+  isRobot: false,
+  attachFile: null,
+   // RepresentativeForm initial data
+   representativeTitle: '',
+   representativeFirstName: '',
+   representativeLastName: '',
+   representativePostalAddress: '',
+  //  representativeAddress: '',
+   representativeSuburb: '',
+   representativePostcode: '',
+   representativeState: '',
+   representativeCountry: '',
+   representativePreferredContact: '',
+   representativeLandline: '',
+   representativeMobile: '',
+   representativeEmail: '',
 };
 
 function App() {
@@ -95,15 +152,14 @@ function App() {
   }
 
   const steps = [
-    // <MyChoiceGroup/>,
     <UserForm {...data} updateFields={updateFields} />,
+    <RepresentativeForm {...data} updateFields={updateFields}/>,
     <AddressForm {...data} updateFields={updateFields} />,
     <IncidentAddressForm {...data} updateFields={updateFields} />,
-    // <AccountForm {...data} updateFields={updateFields} />,
-    <ComplaintForm {...data} updateFields={updateFields} />
+    <ComplaintForm {...data} updateFields={updateFields} />,
+    <ComplaintCont {...data} updateFields={updateFields} />,
+    <FinalizeSubmissionForm {...data} updateFields={updateFields} />
   ];
-
-  // const step = steps[currentStepIndex];
 
   const step = showStartPage ? (
     <StartPage onNext={startForm} />
@@ -118,49 +174,70 @@ function App() {
     e.preventDefault();
     if (!isLastStep) return next();
     console.log(data);
-    alert('Successfully Filled-Up');
+    alert('Successful Account Creation');
   }
 
-  return (
-    <Container
-      component="main"
-      maxWidth="sm"
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-        height: '100vh',
-      }}
-    >
+return (
+  <Container
+    component="main"
+    maxWidth={false}
+    style={{
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'center',
+      height: '100vh',
+      background: '#d7e3f5'
+    }}
+  >
+    {showStartPage ? (
+      <StartPage onNext={startForm} />
+    ) : (
       <Paper
         style={{
           padding: '2rem',
           borderRadius: '.5rem',
           fontFamily: 'Arial',
+          maxWidth: '600px',
         }}
       >
         <form onSubmit={onSubmit}>
-          {!showStartPage && (
-            <div style={{ textAlign: 'right' }}>
-              {currentStepIndex + 1} / {steps.length}
-            </div>
-          )}
+          <div style={{ textAlign: 'right' }}>
+            {currentStepIndex + 1} / {steps.length}
+          </div>
           {step}
-          <div style={{ marginTop: '1rem', display: 'flex', justifyContent: 'flex-end' }}>
+          <div style={{ marginTop: '2rem', display: 'flex', justifyContent: 'flex-end' }}>
             {!isFirstStep && (
-              <Button type="button" onClick={back}>
+              <Button
+                type="button"
+                onClick={back}
+                style={{ marginRight: '8px', backgroundColor: 'blue', color: 'white' }}
+              >
                 Back
               </Button>
             )}
-            {!showStartPage && (
-              <Button type="submit">{isLastStep ? 'Finish' : 'Next'}</Button>
+            {!isLastStep && (
+              <Button
+                type="submit"
+                style={{ marginRight: '8px', backgroundColor: 'blue', color: 'white' }}
+              >
+                Next
+              </Button>
+            )}
+            {isLastStep && (
+              <Button
+                type="submit"
+                style={{ backgroundColor: 'blue', color: 'white' }}
+              >
+                Finish
+              </Button>
             )}
           </div>
         </form>
       </Paper>
-    </Container>
-  );
+    )}
+  </Container>
+);
 }
 
 export default App;

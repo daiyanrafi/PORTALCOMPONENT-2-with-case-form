@@ -1,5 +1,6 @@
+/* eslint-disable no-unused-vars */
 // IncidentAddressForm.tsx
-import * as React from 'react';
+import React from 'react';
 import { TextField, Typography, Grid } from '@mui/material';
 
 type IncidentAddressFormProps = {
@@ -26,10 +27,11 @@ export function IncidentAddressForm({
   updateFields,
 }: IncidentAddressFormProps) {
   return (
-    <div style={{ marginBottom: '16px' }}>
+    <div style={{ marginBottom: '10px' }}>
       <Typography variant="h6" gutterBottom>
         Incident Address
       </Typography>
+      <p style={{ fontFamily: 'Arial, sans-serif', fontSize: '14px', fontStyle: 'italic', marginBottom: '20px' }}>The incident address is the address where your supply is located and may be different to your postal address</p>
       <Grid container spacing={2}>
         <Grid item xs={12}>
           <TextField
